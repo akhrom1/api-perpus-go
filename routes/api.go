@@ -8,12 +8,8 @@ import (
 )
 
 func RegisterAPIRoutes(r *gin.Engine) {
-	r.POST("/login", handlers.Login)
-	r.GET("/ping", func(c *gin.Context) {
-    	c.JSON(200, gin.H{"message": "pong"})
-	})
-
 	api := r.Group("/api")
+	api.POST("/login", handlers.Login)
 	api.Use(middleware.JWTAuthMiddleware())
 
 
